@@ -16,7 +16,6 @@ const Clientes = db.define('clientes', {
     },
     cnpj: {
         type: Sequelize.STRING,
-        allowNull: false
     },
     asnumber: {
         type: Sequelize.STRING,
