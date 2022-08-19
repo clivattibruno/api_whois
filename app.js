@@ -636,6 +636,7 @@ app.post("/clientes/:as", async (req, res) => {
 app.get("/aspathfilter", async(req, res) => {
     await Clientes.findAll({
             attributes: ['asnumber'],
+            order: [["id", "ASC"]],
             where: {
                 asnumber: {
                         [Op.ne]: 'AS28283'
