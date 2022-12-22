@@ -725,15 +725,21 @@ app.post("/clientes/:as", async (req, res) => {
 //Lista as-path-filter
 app.get("/aspathfilter", async (req, res) => {
   await Clientes.findAll({
-    attributes: ["asnumber","pathignore"],
+    attributes: ["asnumber", "pathignore"],
     order: [["id", "ASC"]],
     where: {
-      asnumber: {
-        [Op.ne]: "AS28283",
-      },
-      pathignore: {
-        [Op.ne]: "ignore",
-      },
+      [Op.or]: [
+        {
+          asnumber: {
+            [Op.ne]: "AS28283",
+          },
+        },
+        {
+          pathignore: {
+            [Op.ne]: "ignore",
+          },
+        },
+      ],
     },
   })
     .then((clientes) => {
