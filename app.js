@@ -682,7 +682,7 @@ app.get("/clientes", async (req, res) => {
 app.post("/clientes/:as", async (req, res) => {
   const resp = req.body;
 
-  var aspaths = "%^(" + resp.asinformado + "_)%";
+  var aspaths = "%(" + resp.asinformado + "_)%";
   var as = "AS" + resp.asinformado;
 
   //await User.findAll({ where: { id: id } })
@@ -732,7 +732,7 @@ app.get("/aspathfilter", async (req, res) => {
         [Op.ne]: "AS28283",
       },
       pathignore: {
-        [Op.ne]: "ignore",
+        [Op.eq]: NULL,
       },
     },
   })
