@@ -732,7 +732,7 @@ app.get("/aspathfilter", async (req, res) => {
         [Op.ne]: "AS28283",
       },
       pathignore: {
-        [Op.eq]: NULL,
+        [Op.eq]: "NULL",
       },
     },
   })
