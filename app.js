@@ -103,15 +103,13 @@ app.post("/clientes", async (req, res) => {
 
                     ignoreAS = resp.ignore;
 
-                    console.log(ignoreAS);
-
                     var final = {
                       owner: dono,
                       asnumber: asfinal,
                       ipv4: v4_final,
                       ipv6: v6_final,
                       aspath: aspaths,
-                      //pathignore: ignoreAS,
+                      pathignore: ignoreAS,
                     };
 
                     console.dir(final);
@@ -184,7 +182,6 @@ app.post("/clientes", async (req, res) => {
           }
 
           ignoreAS = resp.ignore;
-          console.log(ignoreAS);
 
           //console.log('INSERT iniciado');
           var final = {
@@ -553,12 +550,15 @@ app.post("/clientescomip", async (req, res) => {
                       }
                     }
 
+                    ignoreAS = resp.ignore;
+
                     var final = {
                       owner: dono,
                       asnumber: asfinal,
                       ipv4: v4_final,
                       ipv6: v6_final,
                       aspath: aspaths,
+                      pathignore: ignoreAS,
                     };
 
                     console.dir(final);
@@ -629,6 +629,8 @@ app.post("/clientescomip", async (req, res) => {
             //console.log("Nao Entrou")
           }
 
+          ignoreAS = resp.ignore;
+
           //console.log('INSERT iniciado');
           var final = {
             owner: dono,
@@ -637,6 +639,7 @@ app.post("/clientescomip", async (req, res) => {
             ipv4: v4_final,
             ipv6: v6_final,
             aspath: aspaths,
+            pathignore: ignoreAS,
           };
 
           resolve(final);
@@ -744,9 +747,18 @@ app.get("/aspathfilter", async (req, res) => {
           },
         },
         {
-          pathignore: {
-            [Op.is]: null,
-          },
+          [Op.or]: [
+            {
+              pathignore: {
+                [Op.is]: null,
+              },
+            },
+            {
+              pathignore: {
+                [Op.eq]: "ok",
+              },
+            },
+          ],
         },
       ],
     },
