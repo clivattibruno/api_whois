@@ -728,7 +728,7 @@ app.get("/aspathfilter", async (req, res) => {
     attributes: ["asnumber", "pathignore"],
     order: [["id", "ASC"]],
     where: {
-      [Op.or]: [
+      [Op.and]: [
         {
           asnumber: {
             [Op.ne]: "AS28283",
