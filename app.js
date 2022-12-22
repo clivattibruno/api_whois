@@ -184,6 +184,7 @@ app.post("/clientes", async (req, res) => {
           }
 
           ignoreAS = resp.ignore;
+          console.log(ignoreAS);
 
           //console.log('INSERT iniciado');
           var final = {
