@@ -731,6 +731,9 @@ app.get("/aspathfilter", async (req, res) => {
       asnumber: {
         [Op.ne]: "AS28283",
       },
+      pathignore: {
+        [Op.ne]: "ignore",
+      },
     },
   })
     .then((clientes) => {
