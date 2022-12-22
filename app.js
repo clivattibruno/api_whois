@@ -193,7 +193,7 @@ app.post("/clientes", async (req, res) => {
             ipv4: v4_final,
             ipv6: v6_final,
             aspath: aspaths,
-            pathignore: ignoreAS,
+            //pathignore: ignoreAS,
           };
 
           resolve(final);
