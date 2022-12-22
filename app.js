@@ -736,7 +736,7 @@ app.get("/aspathfilter", async (req, res) => {
         },
         {
           pathignore: {
-            [Op.ne]: "ignore",
+            [Op.is]: null,
           },
         },
       ],
