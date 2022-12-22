@@ -103,13 +103,15 @@ app.post("/clientes", async (req, res) => {
 
                     ignoreAS = resp.ignore;
 
+                    console.log(ignoreAS);
+
                     var final = {
                       owner: dono,
                       asnumber: asfinal,
                       ipv4: v4_final,
                       ipv6: v6_final,
                       aspath: aspaths,
-                      pathignore: ignoreAS,
+                      //pathignore: ignoreAS,
                     };
 
                     console.dir(final);
