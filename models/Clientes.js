@@ -30,6 +30,9 @@ const Clientes = db.define('clientes', {
     aspath: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    pathignore: {
+        type: Sequelize.STRING
     }
 });
 

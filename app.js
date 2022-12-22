@@ -425,7 +425,7 @@ app.post("/clientescomip", async(req, res) => {
           exec(cmd, async (error, stdout, stderr) => {
             if (error) {
               if (error.code === 1) {
-                url = ("https://api.hackertarget.com/aslookup/?q="+resp.asinformado);
+                url = ("https://api.hackertarget.com/aslookup/?q=as"+resp.asinformado);
                 (async () => {
                     await axios.get(url)
                     .then(response => {
@@ -437,13 +437,13 @@ app.post("/clientescomip", async(req, res) => {
 
                         const array = response.data.split("\n");
 
-                        asfinal = resp.asinformado
-                        dono = (array[0].substring(resp.asinformado.length + 2, array[0].length - 5));
+                        asfinal = "AS"+resp.asinformado;
+                        dono = (array[0].substring(resp.asinformado.length + 4, array[0].length - 5));
 
                         if (resp.path != 'null') {
-                            aspaths = resp.path.substring(0, resp.path.indexOf('$') - 1) + "+(" + resp.asinformado.substring(2, resp.asinformado.length) + "_)+$";
+                            aspaths = resp.path.substring(0, resp.path.indexOf('$') - 1) + "+(" + resp.asinformado + "_)+$";
                         } else {
-                            aspaths = "^(" + resp.asinformado.substring(2, resp.asinformado.length) + "_)+$";
+                            aspaths = "^(" + resp.asinformado + "_)+$";
                         }
 
                         v4 = null;
