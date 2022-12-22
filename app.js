@@ -755,7 +755,7 @@ app.get("/aspathfilter", async (req, res) => {
             },
             {
               pathignore: {
-                [Op.eq]: "ok",
+                [Op.eq]: "0",
               },
             },
           ],
