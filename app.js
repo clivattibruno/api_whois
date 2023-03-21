@@ -250,6 +250,13 @@ app.put("/clientes/:update", async (req, res) => {
                   } else {
                     console.log(response.data);
 
+                    const array = response.data.split("\n");
+
+                    dono = array[0].substring(
+                      resp.asinformado.length + 4,
+                      array[0].length - 5
+                    );
+
                     v4 = null;
                     regexp =
                       /(?:(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])+(\/)+([0-9]{1,2})/gi;
@@ -280,7 +287,7 @@ app.put("/clientes/:update", async (req, res) => {
                       }
                     }
 
-                    var final = { ipv4: v4_final, ipv6: v6_final };
+                    var final = { owner: dono, ipv4: v4_final, ipv6: v6_final };
 
                     console.dir(final);
 
@@ -296,6 +303,15 @@ app.put("/clientes/:update", async (req, res) => {
             reject(error);
           }
         } else {
+
+          dono = stdout.substring(
+            stdout.indexOf("owner:") + 13,
+            stdout.indexOf("\n")
+          );
+		  
+		      var regexp = /[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2}/gi;
+          const doc_cnpj = stdout.match(regexp);
+
           v4 = null;
           regexp =
             /(?:(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])+(\/)+([0-9]{1,2})/gi;
@@ -327,7 +343,7 @@ app.put("/clientes/:update", async (req, res) => {
             }
           }
 
-          var final = { ipv4: v4_final, ipv6: v6_final };
+          var final = { owner: dono, cnpj: doc_cnpj[0], ipv4: v4_final, ipv6: v6_final };
 
           resolve(final);
         }
