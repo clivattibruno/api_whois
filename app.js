@@ -228,7 +228,7 @@ app.put("/clientes/:update", async (req, res) => {
   const resp = req.body;
 
   var exec = require("child_process").exec;
-  const test = `whois -h whois.registro.br ${resp.asinformado} | grep inetnum `;
+  const test = `whois -h whois.registro.br ${resp.asinformado} | egrep 'owner:|ownerid|inetnum' `;
 
   const execRun = (cmd) => {
     return new Promise((resolve, reject) => {
