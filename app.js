@@ -784,13 +784,13 @@ app.get("/aspathfilter", async (req, res) => {
       clientes.forEach((cliente) => {
         if (
           ListaClientes.includes(
-            "ip as-path-filter AS_Clientes permit _" +
+            "ip as-path-filter AS-CLIENTES permit _" +
               cliente.asnumber.substring(+2, cliente.asnumber.length) +
               "_"
           ) === false
         ) {
           ListaClientes.push(
-            "ip as-path-filter AS_Clientes permit _" +
+            "ip as-path-filter AS-CLIENTES permit _" +
               cliente.asnumber.substring(+2, cliente.asnumber.length) +
               "_"
           );
